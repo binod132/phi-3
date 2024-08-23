@@ -4,6 +4,7 @@ from google.cloud import aiplatform
 aiplatform.init(
     project="brave-smile-424210-m0",  # The project where Vertex AI will run
     location="us-west1"  # The location of Vertex AI resources
+    staging_bucket= "gs://testbucketbinod"
 )
 
 # Create and submit a Custom Training Job
