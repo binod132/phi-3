@@ -15,6 +15,7 @@ model, tokenizer = FastLanguageModel.from_pretrained(
 
 # Prepare dataset and trainer
 dataset = load_dataset("yahma/alpaca-cleaned", split="train")
+dataset = dataset.map(formatting_prompts_func, batched = True,)
 trainer = SFTTrainer(
     model=model,
     tokenizer=tokenizer,
