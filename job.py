@@ -6,7 +6,7 @@ os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/adhikaribinod132/phi-3/ver
 aiplatform.init(
     project="brave-smile-424210-m0",  # The project where Vertex AI will run
     location="us-west1",  # The location of Vertex AI resources
-    staging_bucket= "gs://testbucketbinod"
+    staging_bucket= "gs://mlops-phi3"
 )
 service_account="vertex-ai@brave-smile-424210-m0.iam.gserviceaccount.com"
 # Create and submit a Custom Training Job
