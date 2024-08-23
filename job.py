@@ -1,5 +1,7 @@
 from google.cloud import aiplatform
+import os
 
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "/home/adhikaribinod132/phi-3/vertexa-icebrkr.json"
 # Initialize the Vertex AI client
 aiplatform.init(
     project="brave-smile-424210-m0",  # The project where Vertex AI will run
