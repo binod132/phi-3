@@ -6,7 +6,7 @@ aiplatform.init(
     location="us-west1",  # The location of Vertex AI resources
     staging_bucket= "gs://testbucketbinod"
 )
-
+service_account="vertex-ai@brave-smile-424210-m0.iam.gserviceaccount.com"
 # Create and submit a Custom Training Job
 job = aiplatform.CustomJob.from_local_script(
     display_name="phi-3-mini-4k-training",
