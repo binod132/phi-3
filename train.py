@@ -12,6 +12,8 @@ model, tokenizer = FastLanguageModel.from_pretrained(
     max_seq_length=2048,
     load_in_4bit=True,
 )
+model.to("cuda")
+tokenizer.to("cuda")
 
 # Prepare dataset and trainer
 alpaca_prompt = """Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
@@ -36,7 +38,7 @@ def formatting_prompts_func(examples):
         text = alpaca_prompt.format(instruction, input, output) + EOS_TOKEN
         texts.append(text)
     return { "text" : texts, }
-dataset = load_dataset("yahma/alpaca-cleaned", split="train", streaming=True)
+dataset = load_dataset("yahma/alpaca-cleaned", split="train")
 dataset = dataset.map(formatting_prompts_func, batched = True,)
 trainer = SFTTrainer(
     model=model,
