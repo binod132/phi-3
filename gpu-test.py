@@ -1,6 +1,10 @@
 import torch
 import psutil  # For RAM usage
 import os
+from unsloth import FastLanguageModel
+from datasets import load_dataset
+from transformers import TrainingArguments
+from trl import SFTTrainer
 
 def check_gpu():
     if torch.cuda.is_available():
@@ -27,23 +31,16 @@ def gpu_test():
         print("Tensor created on GPU.")
     else:
         print("CUDA is not available.")
+def notice():
+    print ("import success")
 
 def main():
     
     # simple gpu use
-    gpu_test()
     # Check GPU
-    check_gpu()
-    
-    # Check RAM
-    check_ram()
-
-    
     # Your existing code or training logic goes here
+    notice()
     print("Running training script...")
     # For example:
-    # model = ... (Load or define your model)
-    # trainer = ... (Set up and run the training)
-    
 if __name__ == "__main__":
     main()
