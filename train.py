@@ -12,8 +12,8 @@ model, tokenizer = FastLanguageModel.from_pretrained(
     max_seq_length=2048,
     load_in_4bit=True,
 )
-model.to("cuda")
-tokenizer.to("cuda")
+#model.to("cuda")
+#tokenizer.to("cuda")
 
 # Prepare dataset and trainer
 alpaca_prompt = """Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
