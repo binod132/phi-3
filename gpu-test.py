@@ -29,10 +29,44 @@ def gpu_test():
         device = torch.device("cuda")
         tensor = torch.randn(10000, 10000, device=device)
         print("Tensor created on GPU.")
+        check_gpu()
+        check_ram()
     else:
         print("CUDA is not available.")
 def notice():
     print ("import success")
+
+def alpaca_prompt():
+    alpaca_prompt = """Below is an instruction that describes a task, paired with an input that provides further context. Write a response that appropriately completes the request.
+
+    ### Instruction:
+    {}
+
+    ### Input:
+    {}
+
+    ### Response:
+    {}"""
+    return alpaca_prompt
+
+def load_model():
+    model, tokenizer = FastLanguageModel.from_pretrained(
+    model_name="unsloth/Phi-3-mini-4k-instruct",
+    max_seq_length=2048,
+    load_in_4bit=True,
+    )
+    return model, tokenizer
+    
+def formatting_prompts_func(examples):
+    instructions = examples["instruction"]
+    inputs       = examples["input"]
+    outputs      = examples["output"]
+    texts = []
+    for instruction, input, output in zip(instructions, inputs, outputs):
+        # Must add EOS_TOKEN, otherwise your generation will go on forever!
+        text = alpaca_prompt.format(instruction, input, output) + EOS_TOKEN
+        texts.append(text)
+    return { "text" : texts, }
 
 def main():
     
@@ -41,6 +75,11 @@ def main():
     # Your existing code or training logic goes here
     notice()
     print("Running training script...")
-    # For example:
+    # For example:''
+    model, tokenizer =load_model()
+    print("Model loaded...Now preprating dataset")
+    # preparing dataset
+    EOS_TOKEN = tokenizer.eos_token # Must add EOS_TOKEN
+
 if __name__ == "__main__":
     main()

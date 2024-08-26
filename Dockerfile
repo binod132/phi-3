@@ -11,10 +11,10 @@ RUN pip3 install unsloth[colab-new]@git+https://github.com/unslothai/unsloth.git
 RUN pip3 install torch==2.4.0+cu121 --index-url https://download.pytorch.org/whl/cu121
 
 #print
-RUN python3 -c "import torch; print('PyTorch version:', torch.__version__); print('CUDA version:', torch.version.cuda); print('CUDA available:', torch.cuda.is_available())"
+#RUN python3 -c "import torch; print('PyTorch version:', torch.__version__); print('CUDA version:', torch.version.cuda); print('CUDA available:', torch.cuda.is_available())"
 
 # Copy your training script to the container
-COPY train.py /train.py
+#COPY train.py /train.py
 
 # Set the entrypoint
-ENTRYPOINT ["python3", "/train.py"]
+#ENTRYPOINT ["python3", "/train.py"]
