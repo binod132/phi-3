@@ -36,7 +36,7 @@ def formatting_prompts_func(examples):
         text = alpaca_prompt.format(instruction, input, output) + EOS_TOKEN
         texts.append(text)
     return { "text" : texts, }
-dataset = load_dataset("yahma/alpaca-cleaned", split="train")
+dataset = load_dataset("yahma/alpaca-cleaned", split="train", streaming=True)
 dataset = dataset.map(formatting_prompts_func, batched = True,)
 trainer = SFTTrainer(
     model=model,
