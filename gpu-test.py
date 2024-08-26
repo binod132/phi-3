@@ -19,12 +19,25 @@ def check_ram():
     print(f"Available RAM: {ram.available / (1024**3):.2f} GB")
     print(f"Used RAM: {ram.used / (1024**3):.2f} GB")
 
+def gpu_test():
+    if torch.cuda.is_available():
+        print("CUDA is available.")
+        device = torch.device("cuda")
+        tensor = torch.randn(10000, 10000, device=device)
+        print("Tensor created on GPU.")
+    else:
+        print("CUDA is not available.")
+
 def main():
+    
+    # simple gpu use
+    gpu_test()
     # Check GPU
     check_gpu()
     
     # Check RAM
     check_ram()
+
     
     # Your existing code or training logic goes here
     print("Running training script...")
